@@ -11,6 +11,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
+import java.util.Iterator;
+
 public class GameScreen implements Screen {
     final FlappyBirdGame game;
 
@@ -95,6 +97,16 @@ public class GameScreen implements Screen {
         //spawn a new obstacle every second
         if (TimeUtils.nanoTime() - lastObstacleSpawnTime > 1000000000) {
             spawnObstacles();
+        }
+
+        //move the obstacles, remove any that are outside the left edge of the screen
+        Iterator<Rectangle> iter = obstacles.iterator();
+        while (iter.hasNext()) {
+            Rectangle obstacle = iter.next();
+            obstacle.x -= 100 * Gdx.graphics.getDeltaTime();
+            if (obstacle.x + 128 < 0) {
+                iter.remove();
+            }
         }
     }
 
