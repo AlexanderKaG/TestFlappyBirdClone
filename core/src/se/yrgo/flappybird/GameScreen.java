@@ -65,6 +65,10 @@ public class GameScreen implements Screen {
 
         //background color
         ScreenUtils.clear(0,0,0.8f,1);
+
+        //tell the SpriteBatch to render in the coordinate system specified by the camera
+        game.batch.setProjectionMatrix(camera.combined);
+
         
     }
 
