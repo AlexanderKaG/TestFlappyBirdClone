@@ -83,7 +83,7 @@ public class GameScreen implements Screen {
 
         //process user input
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            player.y += 50;
+            player.y += 85;
         }
 
         //make sure the player stays within the screen boundaries
