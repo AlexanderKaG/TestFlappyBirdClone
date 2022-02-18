@@ -103,7 +103,7 @@ public class GameScreen implements Screen {
         Iterator<Rectangle> iter = obstacles.iterator();
         while (iter.hasNext()) {
             Rectangle obstacle = iter.next();
-            obstacle.x -= 100 * Gdx.graphics.getDeltaTime();
+            obstacle.x -= 200 * Gdx.graphics.getDeltaTime();
             if (obstacle.x + 128 < 0) {
                 iter.remove();
             }
