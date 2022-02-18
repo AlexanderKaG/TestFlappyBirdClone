@@ -108,6 +108,9 @@ public class GameScreen implements Screen {
                 iter.remove();
             }
         }
+
+        //makes the player model fall over time
+        player.y -= 200 * Gdx.graphics.getDeltaTime();
     }
 
     @Override
@@ -132,6 +135,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        playerImage.dispose();
+        obstacleImage.dispose();
     }
 }
