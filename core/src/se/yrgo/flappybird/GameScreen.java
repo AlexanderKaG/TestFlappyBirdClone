@@ -1,10 +1,12 @@
 package se.yrgo.flappybird;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -34,7 +36,7 @@ public class GameScreen implements Screen {
         camera.setToOrtho(false, 800, 800);
 
         //create a Rectangle to logically represent the player
-        player = new Rectangle;
+        player = new Rectangle();
         player.x = 800/2-64/2;
         player.y = 400;
         player.width = 64;
@@ -76,6 +78,13 @@ public class GameScreen implements Screen {
             game.batch.draw(obstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
         }
         game.batch.end();
+
+        //process user input
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            player.y += 50;
+        }
+
+
     }
 
     @Override
