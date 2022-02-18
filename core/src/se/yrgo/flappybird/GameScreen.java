@@ -69,7 +69,13 @@ public class GameScreen implements Screen {
         //tell the SpriteBatch to render in the coordinate system specified by the camera
         game.batch.setProjectionMatrix(camera.combined);
 
-        
+        //begin a new batch and draw the player and obstacles
+        game.batch.begin();
+        game.batch.draw(playerImage, player.x, player.y, player.width, player.height);
+        for (Rectangle obstacle : obstacles) {
+            game.batch.draw(obstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
+        }
+        game.batch.end();
     }
 
     @Override
