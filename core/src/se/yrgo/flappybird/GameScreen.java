@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public class GameScreen implements Screen {
     final FlappyBirdGame game;
@@ -17,6 +18,8 @@ public class GameScreen implements Screen {
 
     Rectangle player;
     Array<Rectangle> obstacles;
+
+    long lastObstacleSpawnTime;
 
     public GameScreen(final FlappyBirdGame game) {
         this.game = game;
@@ -39,5 +42,15 @@ public class GameScreen implements Screen {
        //creates and array to hold obstacles and spawns the first obstacle
         obstacles = new Array<Rectangle>();
         spawnObstacles();
+    }
+
+    private void spawnObstacles() {
+        Rectangle obstacle = new Rectangle();
+        obstacle.x = 800-128;
+        obstacle.y = 0;
+        obstacle.width = 128;
+        obstacle.height = 300;
+        obstacles.add(obstacle);
+        lastObstacleSpawnTime = TimeUtils.nanoTime();
     }
 }
