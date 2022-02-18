@@ -84,7 +84,13 @@ public class GameScreen implements Screen {
             player.y += 50;
         }
 
-
+        //make sure the player stays within the screen boundaries
+        if (player.y > 800-64) {
+            player.y = 800-64;
+        }
+        if (player.y < 0) {
+            player.y = 0;
+        }
     }
 
     @Override
