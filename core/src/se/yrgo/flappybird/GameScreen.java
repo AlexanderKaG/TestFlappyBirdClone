@@ -91,6 +91,11 @@ public class GameScreen implements Screen {
         if (player.y < 0) {
             player.y = 0;
         }
+
+        //spawn a new obstacle every second
+        if (TimeUtils.nanoTime() - lastObstacleSpawnTime > 1000000000) {
+            spawnObstacles();
+        }
     }
 
     @Override
