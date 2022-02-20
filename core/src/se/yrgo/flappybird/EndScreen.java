@@ -3,6 +3,7 @@ package se.yrgo.flappybird;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class EndScreen implements Screen {
@@ -10,10 +11,14 @@ public class EndScreen implements Screen {
     final FlappyBirdGame game;
     OrthographicCamera camera;
 
+    Array<Integer> scoreboard;
+
     public EndScreen(final FlappyBirdGame game) {
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 800);
+
+        scoreboard = new Array<>();
     }
 
     @Override
