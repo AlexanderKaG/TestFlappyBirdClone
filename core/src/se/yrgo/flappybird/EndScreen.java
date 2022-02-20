@@ -40,18 +40,18 @@ public class EndScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         int scoreboardLayout = 550;
-        int highscore = 0;
+        int highScore = 0;
         game.batch.begin();
         game.font.draw(game.batch, "Your Score: " + GameScreen.points, 300, 600);
         game.font.draw(game.batch, "Previous scores:", 300, scoreboardLayout);
         for (Integer score : game.scoreboard) {
             game.font.draw(game.batch, Integer.toString(score), 300, scoreboardLayout - 20);
             scoreboardLayout -= 20;
-            if (score > highscore) {
-                highscore = score;
+            if (score > highScore) {
+                highScore = score;
             }
         }
-        game.font.draw(game.batch, "High-score: " + highscore, 300, 200);
+        game.font.draw(game.batch, "High-score: " + highScore, 300, 200);
         game.font.draw(game.batch, "Tap anywhere to restart", 300, 100);
         game.batch.end();
 
