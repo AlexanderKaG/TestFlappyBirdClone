@@ -1,9 +1,19 @@
 package se.yrgo.flappybird;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class EndScreen implements Screen {
-    
+
+    final FlappyBirdGame game;
+    OrthographicCamera camera;
+
+    public EndScreen(final FlappyBirdGame game) {
+        this.game = game;
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, 800, 800);
+    }
+
     @Override
     public void show() {
 
