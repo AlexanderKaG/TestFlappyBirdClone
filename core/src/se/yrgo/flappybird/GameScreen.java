@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -18,7 +17,8 @@ public class GameScreen implements Screen {
     final FlappyBirdGame game;
 
     Texture playerImage;
-    Texture obstacleImage;
+    Texture bottomObstacleImage;
+    Texture topObstacleImage;
 
     OrthographicCamera camera;
 
@@ -32,7 +32,8 @@ public class GameScreen implements Screen {
 
         //load the images for player and obstacles
         playerImage = new Texture(Gdx.files.internal("brownsquare.png"));
-        obstacleImage = new Texture(Gdx.files.internal("mariopipe.png"));
+        bottomObstacleImage = new Texture(Gdx.files.internal("bottomObstacle.png"));
+        topObstacleImage = new Texture(Gdx.files.internal("topObstacle.png"));
 
         //create the camera
         camera = new OrthographicCamera();
@@ -86,7 +87,7 @@ public class GameScreen implements Screen {
         game.batch.begin();
         game.batch.draw(playerImage, player.x, player.y, player.width, player.height);
         for (Rectangle obstacle : obstacles) {
-            game.batch.draw(obstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
+            game.batch.draw(bottomObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
         }
         game.batch.end();
 
@@ -149,6 +150,6 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         playerImage.dispose();
-        obstacleImage.dispose();
+        bottomObstacleImage.dispose();
     }
 }
