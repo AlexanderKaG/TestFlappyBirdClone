@@ -160,5 +160,6 @@ public class GameScreen implements Screen {
     public void dispose() {
         playerImage.dispose();
         bottomObstacleImage.dispose();
+        topObstacleImage.dispose();
     }
 }
