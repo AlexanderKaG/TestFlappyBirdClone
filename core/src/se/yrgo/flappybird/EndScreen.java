@@ -1,7 +1,9 @@
 package se.yrgo.flappybird;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.ScreenUtils;
 
 public class EndScreen implements Screen {
 
@@ -21,7 +23,21 @@ public class EndScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        ScreenUtils.clear(0,0,0.8f,1);
 
+        camera.update();
+        game.batch.setProjectionMatrix(camera.combined);
+
+        game.batch.begin();
+        game.font.draw(game.batch, "Your Score: " + GameScreen.points, 300, 600);
+        game.font.draw(game.batch, "Tap anywhere to restart", 300, 500);
+        game.batch.end();
+
+        if (Gdx.input.isTouched()) {
+            GameScreen.points = 0;
+            game.setScreen(new GameScreen(game));
+            dispose();
+        }
     }
 
     @Override

@@ -30,7 +30,7 @@ public class GameScreen implements Screen {
 
     long lastObstacleSpawnTime;
     long lastPointAwardedTime;
-    Integer points = 0;
+    static Integer points = 0;
 
     public GameScreen(final FlappyBirdGame game) {
         this.game = game;
@@ -141,7 +141,7 @@ public class GameScreen implements Screen {
                 topIter.remove();
             }
             if (bottomObstacle.overlaps(player) || topObstacle.overlaps(player)) {
-                game.setScreen(new GameScreen(game));
+                game.setScreen(new EndScreen(game));
                 dispose();
             }
         }
