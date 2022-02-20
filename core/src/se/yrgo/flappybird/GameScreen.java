@@ -26,8 +26,6 @@ public class GameScreen implements Screen {
     Array<Rectangle> bottomObstacles;
     Array<Rectangle> topObstacles;
 
-    boolean playerIsAlive = true;
-
     long lastObstacleSpawnTime;
     long lastPointAwardedTime;
     static Integer points = 0;
@@ -36,7 +34,7 @@ public class GameScreen implements Screen {
         this.game = game;
 
         //load the images for player and obstacles
-        playerImage = new Texture(Gdx.files.internal("brownsquare.png"));
+        playerImage = new Texture(Gdx.files.internal("brownSquare.png"));
         bottomObstacleImage = new Texture(Gdx.files.internal("bottomObstacle.png"));
         topObstacleImage = new Texture(Gdx.files.internal("topObstacle.png"));
 
@@ -46,14 +44,14 @@ public class GameScreen implements Screen {
 
         //create a Rectangle to logically represent the player
         player = new Rectangle();
-        player.x = 800/2-64/2;
+        player.x = (float)800/2-(float)64/2;
         player.y = 400;
         player.width = 64;
         player.height = 64;
 
        //creates two arrays to hold bottomObstacles and topObstacles and spawns the first obstacle
-        bottomObstacles = new Array<Rectangle>();
-        topObstacles = new Array<Rectangle>();
+        bottomObstacles = new Array<>();
+        topObstacles = new Array<>();
         spawnObstacles();
     }
 
@@ -129,16 +127,16 @@ public class GameScreen implements Screen {
         }
 
         //move the obstacles, remove any that are outside the left edge of the screen
-        Iterator<Rectangle> bottomIter = bottomObstacles.iterator();
-        Iterator<Rectangle> topIter = topObstacles.iterator();
-        while (bottomIter.hasNext() || topIter.hasNext()) {
-            Rectangle bottomObstacle = bottomIter.next();
-            Rectangle topObstacle = topIter.next();
+        Iterator<Rectangle> bottomIteration = bottomObstacles.iterator();
+        Iterator<Rectangle> topIteration = topObstacles.iterator();
+        while (bottomIteration.hasNext() || topIteration.hasNext()) {
+            Rectangle bottomObstacle = bottomIteration.next();
+            Rectangle topObstacle = topIteration.next();
             bottomObstacle.x -= 200 * Gdx.graphics.getDeltaTime();
             topObstacle.x -= 200 * Gdx.graphics.getDeltaTime();
             if (bottomObstacle.x + 128 < 0 || topObstacle.x + 128 < 0) {
-                bottomIter.remove();
-                topIter.remove();
+                bottomIteration.remove();
+                topIteration.remove();
             }
             if (bottomObstacle.overlaps(player) || topObstacle.overlaps(player)) {
                 game.setScreen(new EndScreen(game));
