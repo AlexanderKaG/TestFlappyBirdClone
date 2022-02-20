@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
@@ -54,12 +55,12 @@ public class GameScreen implements Screen {
         bottomObstacle.x = 850;
         bottomObstacle.y = 0;
         bottomObstacle.width = 128;
-        bottomObstacle.height = 300;
+        bottomObstacle.height = MathUtils.random(100, 500);
         obstacles.add(bottomObstacle);
 
         Rectangle topObstacle = new Rectangle();
         topObstacle.x = 850;
-        topObstacle.y = 500;
+        topObstacle.y = 800-300;
         topObstacle.width = 128;
         topObstacle.height = 300;
         obstacles.add(topObstacle);
