@@ -50,12 +50,12 @@ public class GameScreen implements Screen {
     }
 
     private void spawnObstacles() {
-        Rectangle obstacle = new Rectangle();
-        obstacle.x = 800-128;
-        obstacle.y = 0;
-        obstacle.width = 128;
-        obstacle.height = 300;
-        obstacles.add(obstacle);
+        Rectangle bottomObstacle = new Rectangle();
+        bottomObstacle.x = 800-128;
+        bottomObstacle.y = 0;
+        bottomObstacle.width = 128;
+        bottomObstacle.height = 300;
+        obstacles.add(bottomObstacle);
         lastObstacleSpawnTime = TimeUtils.nanoTime();
     }
 
