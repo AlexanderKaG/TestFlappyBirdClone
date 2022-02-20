@@ -27,6 +27,7 @@ public class GameScreen implements Screen {
     Array<Rectangle> topObstacles;
 
     long lastObstacleSpawnTime;
+    Integer points = 0;
 
     public GameScreen(final FlappyBirdGame game) {
         this.game = game;
@@ -94,6 +95,7 @@ public class GameScreen implements Screen {
         for (Rectangle obstacle : topObstacles) {
             game.batch.draw(topObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
         }
+        game.font.draw(game.batch, Integer.toString(points), 100, 700);
         game.batch.end();
 
         //process user input
