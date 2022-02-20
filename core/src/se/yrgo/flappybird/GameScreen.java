@@ -115,6 +115,10 @@ public class GameScreen implements Screen {
             if (obstacle.x + 128 < 0) {
                 iter.remove();
             }
+            if (obstacle.overlaps(player)) {
+                game.setScreen(new GameScreen(game));
+                dispose();
+            }
         }
 
         //makes the player model fall over time
