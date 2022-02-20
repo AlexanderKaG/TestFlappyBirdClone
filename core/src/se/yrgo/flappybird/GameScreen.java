@@ -51,14 +51,14 @@ public class GameScreen implements Screen {
 
     private void spawnObstacles() {
         Rectangle bottomObstacle = new Rectangle();
-        bottomObstacle.x = 800-128;
+        bottomObstacle.x = 800;
         bottomObstacle.y = 0;
         bottomObstacle.width = 128;
         bottomObstacle.height = 300;
         obstacles.add(bottomObstacle);
 
         Rectangle topObstacle = new Rectangle();
-        topObstacle.x = 800-128;
+        topObstacle.x = 800;
         topObstacle.y = 500;
         topObstacle.width = 128;
         topObstacle.height = 300;
