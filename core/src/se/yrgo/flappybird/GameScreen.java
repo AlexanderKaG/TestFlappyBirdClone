@@ -23,7 +23,8 @@ public class GameScreen implements Screen {
     OrthographicCamera camera;
 
     Rectangle player;
-    Array<Rectangle> obstacles;
+    Array<Rectangle> bottomObstacles;
+    Array<Rectangle> topObstacles;
 
     long lastObstacleSpawnTime;
 
@@ -47,7 +48,7 @@ public class GameScreen implements Screen {
         player.height = 64;
 
        //creates and array to hold obstacles and spawns the first obstacle
-        obstacles = new Array<Rectangle>();
+        bottomObstacles = new Array<Rectangle>();
         spawnObstacles();
     }
 
@@ -57,14 +58,14 @@ public class GameScreen implements Screen {
         bottomObstacle.y = 0;
         bottomObstacle.width = 128;
         bottomObstacle.height = MathUtils.random(100, 500);
-        obstacles.add(bottomObstacle);
+        bottomObstacles.add(bottomObstacle);
 
         Rectangle topObstacle = new Rectangle();
         topObstacle.x = 850;
         topObstacle.width = 128;
         topObstacle.height = 600-bottomObstacle.height;
         topObstacle.y = 800-topObstacle.height;
-        obstacles.add(topObstacle);
+        bottomObstacles.add(topObstacle);
 
         lastObstacleSpawnTime = TimeUtils.nanoTime();
     }
@@ -86,7 +87,7 @@ public class GameScreen implements Screen {
         //begin a new batch and draw the player and obstacles
         game.batch.begin();
         game.batch.draw(playerImage, player.x, player.y, player.width, player.height);
-        for (Rectangle obstacle : obstacles) {
+        for (Rectangle obstacle : bottomObstacles) {
             game.batch.draw(bottomObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
         }
         game.batch.end();
@@ -110,7 +111,7 @@ public class GameScreen implements Screen {
         }
 
         //move the obstacles, remove any that are outside the left edge of the screen
-        Iterator<Rectangle> iter = obstacles.iterator();
+        Iterator<Rectangle> iter = bottomObstacles.iterator();
         while (iter.hasNext()) {
             Rectangle obstacle = iter.next();
             obstacle.x -= 200 * Gdx.graphics.getDeltaTime();
