@@ -47,8 +47,9 @@ public class GameScreen implements Screen {
         player.width = 64;
         player.height = 64;
 
-       //creates and array to hold obstacles and spawns the first obstacle
+       //creates two arrays to hold bottomObstacles and topObstacles and spawns the first obstacle
         bottomObstacles = new Array<Rectangle>();
+        topObstacles = new Array<Rectangle>();
         spawnObstacles();
     }
 
@@ -65,7 +66,7 @@ public class GameScreen implements Screen {
         topObstacle.width = 128;
         topObstacle.height = 600-bottomObstacle.height;
         topObstacle.y = 800-topObstacle.height;
-        bottomObstacles.add(topObstacle);
+        topObstacles.add(topObstacle);
 
         lastObstacleSpawnTime = TimeUtils.nanoTime();
     }
@@ -89,6 +90,9 @@ public class GameScreen implements Screen {
         game.batch.draw(playerImage, player.x, player.y, player.width, player.height);
         for (Rectangle obstacle : bottomObstacles) {
             game.batch.draw(bottomObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
+        }
+        for (Rectangle obstacle : topObstacles) {
+            game.batch.draw(topObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
         }
         game.batch.end();
 
