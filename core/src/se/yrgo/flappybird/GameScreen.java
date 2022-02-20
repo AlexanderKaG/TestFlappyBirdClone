@@ -26,7 +26,10 @@ public class GameScreen implements Screen {
     Array<Rectangle> bottomObstacles;
     Array<Rectangle> topObstacles;
 
+    boolean playerIsAlive = true;
+
     long lastObstacleSpawnTime;
+    long lastPointAwardedTime;
     Integer points = 0;
 
     public GameScreen(final FlappyBirdGame game) {
@@ -72,6 +75,11 @@ public class GameScreen implements Screen {
         lastObstacleSpawnTime = TimeUtils.nanoTime();
     }
 
+    private void addPoints() {
+        points += 1;
+        lastPointAwardedTime = TimeUtils.nanoTime();
+    }
+
     @Override
     public void show() {
 
@@ -114,6 +122,10 @@ public class GameScreen implements Screen {
         //spawn a new obstacle every second
         if (TimeUtils.nanoTime() - lastObstacleSpawnTime > 2000000000) {
             spawnObstacles();
+        }
+
+        if (TimeUtils.nanoTime() - lastPointAwardedTime > 50000000) {
+            addPoints();
         }
 
         //move the obstacles, remove any that are outside the left edge of the screen
