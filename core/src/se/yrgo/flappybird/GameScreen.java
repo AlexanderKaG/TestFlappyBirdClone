@@ -5,8 +5,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -17,21 +17,28 @@ public class GameScreen implements Screen {
     final FlappyBirdGame game;
 
     Texture playerImage;
-    Texture obstacleImage;
+    Texture bottomObstacleImage;
+    Texture topObstacleImage;
 
     OrthographicCamera camera;
 
     Rectangle player;
-    Array<Rectangle> obstacles;
+    Array<Rectangle> bottomObstacles;
+    Array<Rectangle> topObstacles;
+
+    boolean playerIsAlive = true;
 
     long lastObstacleSpawnTime;
+    long lastPointAwardedTime;
+    static Integer points = 0;
 
     public GameScreen(final FlappyBirdGame game) {
         this.game = game;
 
         //load the images for player and obstacles
         playerImage = new Texture(Gdx.files.internal("brownsquare.png"));
-        obstacleImage = new Texture(Gdx.files.internal("mariopipe.png"));
+        bottomObstacleImage = new Texture(Gdx.files.internal("bottomObstacle.png"));
+        topObstacleImage = new Texture(Gdx.files.internal("topObstacle.png"));
 
         //create the camera
         camera = new OrthographicCamera();
@@ -44,19 +51,33 @@ public class GameScreen implements Screen {
         player.width = 64;
         player.height = 64;
 
-       //creates and array to hold obstacles and spawns the first obstacle
-        obstacles = new Array<Rectangle>();
+       //creates two arrays to hold bottomObstacles and topObstacles and spawns the first obstacle
+        bottomObstacles = new Array<Rectangle>();
+        topObstacles = new Array<Rectangle>();
         spawnObstacles();
     }
 
     private void spawnObstacles() {
-        Rectangle obstacle = new Rectangle();
-        obstacle.x = 800-128;
-        obstacle.y = 0;
-        obstacle.width = 128;
-        obstacle.height = 300;
-        obstacles.add(obstacle);
+        Rectangle bottomObstacle = new Rectangle();
+        bottomObstacle.x = 850;
+        bottomObstacle.y = 0;
+        bottomObstacle.width = 128;
+        bottomObstacle.height = MathUtils.random(100, 500);
+        bottomObstacles.add(bottomObstacle);
+
+        Rectangle topObstacle = new Rectangle();
+        topObstacle.x = 850;
+        topObstacle.width = 128;
+        topObstacle.height = 600-bottomObstacle.height;
+        topObstacle.y = 800-topObstacle.height;
+        topObstacles.add(topObstacle);
+
         lastObstacleSpawnTime = TimeUtils.nanoTime();
+    }
+
+    private void addPoints() {
+        points += 1;
+        lastPointAwardedTime = TimeUtils.nanoTime();
     }
 
     @Override
@@ -76,9 +97,13 @@ public class GameScreen implements Screen {
         //begin a new batch and draw the player and obstacles
         game.batch.begin();
         game.batch.draw(playerImage, player.x, player.y, player.width, player.height);
-        for (Rectangle obstacle : obstacles) {
-            game.batch.draw(obstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
+        for (Rectangle obstacle : bottomObstacles) {
+            game.batch.draw(bottomObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
         }
+        for (Rectangle obstacle : topObstacles) {
+            game.batch.draw(topObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
+        }
+        game.font.draw(game.batch, Integer.toString(points), 100, 700);
         game.batch.end();
 
         //process user input
@@ -99,13 +124,25 @@ public class GameScreen implements Screen {
             spawnObstacles();
         }
 
+        if (TimeUtils.nanoTime() - lastPointAwardedTime > 50000000) {
+            addPoints();
+        }
+
         //move the obstacles, remove any that are outside the left edge of the screen
-        Iterator<Rectangle> iter = obstacles.iterator();
-        while (iter.hasNext()) {
-            Rectangle obstacle = iter.next();
-            obstacle.x -= 200 * Gdx.graphics.getDeltaTime();
-            if (obstacle.x + 128 < 0) {
-                iter.remove();
+        Iterator<Rectangle> bottomIter = bottomObstacles.iterator();
+        Iterator<Rectangle> topIter = topObstacles.iterator();
+        while (bottomIter.hasNext() || topIter.hasNext()) {
+            Rectangle bottomObstacle = bottomIter.next();
+            Rectangle topObstacle = topIter.next();
+            bottomObstacle.x -= 200 * Gdx.graphics.getDeltaTime();
+            topObstacle.x -= 200 * Gdx.graphics.getDeltaTime();
+            if (bottomObstacle.x + 128 < 0 || topObstacle.x + 128 < 0) {
+                bottomIter.remove();
+                topIter.remove();
+            }
+            if (bottomObstacle.overlaps(player) || topObstacle.overlaps(player)) {
+                game.setScreen(new EndScreen(game));
+                dispose();
             }
         }
 
@@ -136,6 +173,7 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         playerImage.dispose();
-        obstacleImage.dispose();
+        bottomObstacleImage.dispose();
+        topObstacleImage.dispose();
     }
 }

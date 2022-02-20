@@ -22,13 +22,13 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(0,0,0.2f,1);
+        ScreenUtils.clear(0,0,0.8f,1);
 
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        game.font.draw(game.batch, "Welcome to MyExtendedTestGame!!!", 300, 600);
+        game.font.draw(game.batch, "Welcome to my Flappy Bird clone!!!", 300, 600);
         game.font.draw(game.batch, "Tap anywhere to begin", 300, 500);
         game.batch.end();
 
