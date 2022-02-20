@@ -115,14 +115,18 @@ public class GameScreen implements Screen {
         }
 
         //move the obstacles, remove any that are outside the left edge of the screen
-        Iterator<Rectangle> iter = bottomObstacles.iterator();
-        while (iter.hasNext()) {
-            Rectangle obstacle = iter.next();
-            obstacle.x -= 200 * Gdx.graphics.getDeltaTime();
-            if (obstacle.x + 128 < 0) {
-                iter.remove();
+        Iterator<Rectangle> bottomIter = bottomObstacles.iterator();
+        Iterator<Rectangle> topIter = topObstacles.iterator();
+        while (bottomIter.hasNext() || topIter.hasNext()) {
+            Rectangle bottomObstacle = bottomIter.next();
+            Rectangle topObstacle = topIter.next();
+            bottomObstacle.x -= 200 * Gdx.graphics.getDeltaTime();
+            topObstacle.x -= 200 * Gdx.graphics.getDeltaTime();
+            if (bottomObstacle.x + 128 < 0 || topObstacle.x + 128 < 0) {
+                bottomIter.remove();
+                topIter.remove();
             }
-            if (obstacle.overlaps(player)) {
+            if (bottomObstacle.overlaps(player) || topObstacle.overlaps(player)) {
                 game.setScreen(new GameScreen(game));
                 dispose();
             }
