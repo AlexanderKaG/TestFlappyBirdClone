@@ -1,5 +1,7 @@
 package se.yrgo.flappybird;
 
+import se.yrgo.flappybird.FlappyBirdGame;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -30,6 +32,8 @@ public class GameScreen implements Screen {
     private long lastPointAwardedTime;
     static int points = 0;
 
+    private static int playerWidth = 64;
+
     public GameScreen(final FlappyBirdGame game) {
         this.game = game;
 
@@ -44,7 +48,7 @@ public class GameScreen implements Screen {
 
         //create a Rectangle to logically represent the player
         player = new Rectangle();
-        player.x = (float) 800 / 2 - (float) 64 / 2;
+        player.x = FlappyBirdGame.getPLAYER_X_POSITION_CENTERED();
         player.y = 400;
         player.width = 64;
         player.height = 64;
@@ -53,6 +57,10 @@ public class GameScreen implements Screen {
         bottomObstacles = new Array<>();
         topObstacles = new Array<>();
         spawnObstacles();
+    }
+
+    public static int getPlayerWidth() {
+        return playerWidth;
     }
 
     private void spawnObstacles() {
