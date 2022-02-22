@@ -9,7 +9,7 @@ public class FlappyBirdGame extends Game {
 	private SpriteBatch batch;
 	private BitmapFont font;
 
-	Array<Integer> scoreboard;
+	private Array<Integer> scoreboard;
 
 	@Override
 	public void create () {
@@ -25,6 +25,10 @@ public class FlappyBirdGame extends Game {
 
 	public BitmapFont getFont() {
 		return this.font;
+	}
+
+	public Array<Integer> getScoreboard() {
+		return scoreboard;
 	}
 
 	@Override

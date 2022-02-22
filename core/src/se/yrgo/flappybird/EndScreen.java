@@ -19,7 +19,7 @@ public class EndScreen implements Screen {
     }
 
     private void addScoreToScoreboard() {
-        game.scoreboard.add(GameScreen.points);
+        game.getScoreboard().add(GameScreen.points);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class EndScreen implements Screen {
         game.getBatch().begin();
         game.getFont().draw(game.getBatch(), "Your Score: " + GameScreen.points, 340, 700);
         game.getFont().draw(game.getBatch(), "Previous scores:", 340, scoreboardLayout);
-        for (Integer score : game.scoreboard) {
+        for (Integer score : game.getScoreboard()) {
             game.getFont().draw(game.getBatch(), Integer.toString(score), 340, scoreboardLayout - 20);
             scoreboardLayout -= 20;
             if (score > highScore) {
