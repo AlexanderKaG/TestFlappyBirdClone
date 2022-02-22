@@ -7,8 +7,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class EndScreen implements Screen {
 
-    final FlappyBirdGame game;
-    OrthographicCamera camera;
+    private final FlappyBirdGame game;
+    private final OrthographicCamera camera;
 
     public EndScreen(final FlappyBirdGame game) {
         this.game = game;

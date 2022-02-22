@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class MainMenuScreen implements Screen {
-    final FlappyBirdGame game;
-    OrthographicCamera camera;
+    private final FlappyBirdGame game;
+    private final OrthographicCamera camera;
 
     public MainMenuScreen(final FlappyBirdGame game) {
         this.game = game;

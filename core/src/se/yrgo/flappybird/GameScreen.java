@@ -14,20 +14,20 @@ import com.badlogic.gdx.utils.TimeUtils;
 import java.util.Iterator;
 
 public class GameScreen implements Screen {
-    final FlappyBirdGame game;
+    private final FlappyBirdGame game;
 
-    Texture playerImage;
-    Texture bottomObstacleImage;
-    Texture topObstacleImage;
+    private final Texture playerImage;
+    private final Texture bottomObstacleImage;
+    private final Texture topObstacleImage;
 
-    OrthographicCamera camera;
+    private final OrthographicCamera camera;
 
-    Rectangle player;
-    Array<Rectangle> bottomObstacles;
-    Array<Rectangle> topObstacles;
+    private final Rectangle player;
+    private final Array<Rectangle> bottomObstacles;
+    private final Array<Rectangle> topObstacles;
 
-    long lastObstacleSpawnTime;
-    long lastPointAwardedTime;
+    private long lastObstacleSpawnTime;
+    private long lastPointAwardedTime;
     static Integer points = 0;
 
     public GameScreen(final FlappyBirdGame game) {
