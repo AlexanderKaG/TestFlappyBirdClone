@@ -13,6 +13,14 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 import java.util.Iterator;
 
+import static se.yrgo.flappybird.Constants.OBSTACLE_STARTING_X_POSITION;
+import static se.yrgo.flappybird.Constants.OBSTACLE_WIDTH;
+import static se.yrgo.flappybird.Constants.BOTTOM_OBSTACLE_STARTING_Y_POSITION;
+import static se.yrgo.flappybird.Constants.PLAYER_STARTING_X_POSITION_CENTERED;
+import static se.yrgo.flappybird.Constants.PLAYER_STARTING_Y_POSITION_CENTERED;
+import static se.yrgo.flappybird.Constants.PLAYER_WIDTH;
+import static se.yrgo.flappybird.Constants.PLAYER_HEIGHT;
+
 public class GameScreen implements Screen {
     private final FlappyBirdGame game;
 
@@ -30,8 +38,6 @@ public class GameScreen implements Screen {
     private long lastPointAwardedTime;
     static int points = 0;
 
-    private static int playerWidth = 64;
-
     public GameScreen(final FlappyBirdGame game) {
         this.game = game;
 
@@ -46,10 +52,10 @@ public class GameScreen implements Screen {
 
         //create a Rectangle to logically represent the player
         player = new Rectangle();
-        player.x = Constants.getPLAYER_STARTING_X_POSITION_CENTERED();
-        player.y = 400;
-        player.width = 64;
-        player.height = 64;
+        player.x = PLAYER_STARTING_X_POSITION_CENTERED;
+        player.y = PLAYER_STARTING_Y_POSITION_CENTERED;
+        player.width = PLAYER_WIDTH;
+        player.height = PLAYER_HEIGHT;
 
         //creates two arrays to hold bottomObstacles and topObstacles and spawns the first obstacle
         bottomObstacles = new Array<>();
@@ -57,22 +63,18 @@ public class GameScreen implements Screen {
         spawnObstacles();
     }
 
-    public static int getPlayerWidth() {
-        return playerWidth;
-    }
-
     private void spawnObstacles() {
         Rectangle bottomObstacle = new Rectangle();
-        bottomObstacle.x = 850;
-        bottomObstacle.y = 0;
-        bottomObstacle.width = 128;
+        bottomObstacle.width = OBSTACLE_WIDTH;
         bottomObstacle.height = MathUtils.random(100, 500);
+        bottomObstacle.x = OBSTACLE_STARTING_X_POSITION;
+        bottomObstacle.y = BOTTOM_OBSTACLE_STARTING_Y_POSITION;
         bottomObstacles.add(bottomObstacle);
 
         Rectangle topObstacle = new Rectangle();
-        topObstacle.x = 850;
-        topObstacle.width = 128;
+        topObstacle.width = OBSTACLE_WIDTH;
         topObstacle.height = 600 - bottomObstacle.height;
+        topObstacle.x = OBSTACLE_STARTING_X_POSITION;
         topObstacle.y = 800 - topObstacle.height;
         topObstacles.add(topObstacle);
 

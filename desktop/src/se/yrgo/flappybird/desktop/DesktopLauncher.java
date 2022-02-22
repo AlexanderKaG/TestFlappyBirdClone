@@ -10,8 +10,8 @@ public class DesktopLauncher {
     public static void main(String[] arg) {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.title = "TestFlappyBirdClone";
-        config.width = Constants.getWidth();
-        config.height = Constants.getHeight();
+        config.width = Constants.WINDOW_WIDTH;
+        config.height = Constants.WINDOW_HEIGHT;
         new LwjglApplication(new FlappyBirdGame(), config);
     }
 }
