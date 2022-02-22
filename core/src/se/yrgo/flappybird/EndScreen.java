@@ -20,7 +20,7 @@ public class EndScreen implements Screen {
     }
 
     private void addScoreToScoreboard() {
-        game.getScoreboard().add(GameScreen.points);
+        game.getScoreboard().add(GameScreen.getPoints());
     }
 
     @Override
@@ -38,7 +38,7 @@ public class EndScreen implements Screen {
         int scoreboardLayout = 650;
         int highScore = 0;
         game.getBatch().begin();
-        game.getFont().draw(game.getBatch(), "Your Score: " + GameScreen.points, 340, 700);
+        game.getFont().draw(game.getBatch(), "Your Score: " + GameScreen.getPoints(), 340, 700);
         game.getFont().draw(game.getBatch(), "Previous scores:", 340, scoreboardLayout);
         for (Integer score : game.getScoreboard()) {
             game.getFont().draw(game.getBatch(), Integer.toString(score), 340, scoreboardLayout - 20);
@@ -52,7 +52,7 @@ public class EndScreen implements Screen {
         game.getBatch().end();
 
         if (Gdx.input.isTouched() || Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            GameScreen.points = 0;
+            GameScreen.setPoints(0);
             game.setScreen(new GameScreen(game));
             dispose();
         }
