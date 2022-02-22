@@ -1,7 +1,5 @@
 package se.yrgo.flappybird;
 
-import se.yrgo.flappybird.FlappyBirdGame;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -48,7 +46,7 @@ public class GameScreen implements Screen {
 
         //create a Rectangle to logically represent the player
         player = new Rectangle();
-        player.x = FlappyBirdGame.getPLAYER_X_POSITION_CENTERED();
+        player.x = Constants.getPLAYER_STARTING_X_POSITION_CENTERED();
         player.y = 400;
         player.width = 64;
         player.height = 64;
@@ -88,7 +86,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-// method required to implement Screen
+        // method required to implement Screen
     }
 
     @Override
@@ -158,22 +156,22 @@ public class GameScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-// method required to implement Screen
+        // method required to implement Screen
     }
 
     @Override
     public void pause() {
-// method required to implement Screen
+        // method required to implement Screen
     }
 
     @Override
     public void resume() {
-// method required to implement Screen
+        // method required to implement Screen
     }
 
     @Override
     public void hide() {
-// method required to implement Screen
+        // method required to implement Screen
     }
 
     @Override
