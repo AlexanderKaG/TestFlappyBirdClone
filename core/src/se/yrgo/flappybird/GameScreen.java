@@ -101,7 +101,7 @@ public class GameScreen implements Screen {
         for (Rectangle obstacle : topObstacles) {
             game.getBatch().draw(topObstacleImage, obstacle.x, obstacle.y, obstacle.width, obstacle.height);
         }
-        game.getFont().draw(game.getBatch(), "" + points, 100, 700);
+        game.getFont().draw(game.getBatch(), Integer.toString(points), 100, 700);
         game.getBatch().end();
 
         //process user input

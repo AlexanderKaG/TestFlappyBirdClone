@@ -1,6 +1,7 @@
 package se.yrgo.flappybird;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -32,7 +33,7 @@ public class MainMenuScreen implements Screen {
         game.getFont().draw(game.getBatch(), "Tap anywhere to begin", 300, 500);
         game.getBatch().end();
 
-        if (Gdx.input.isTouched()) {
+        if (Gdx.input.isTouched() || Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
             game.setScreen(new GameScreen(game));
             dispose();
         }
