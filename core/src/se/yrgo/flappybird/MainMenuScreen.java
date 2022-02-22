@@ -25,12 +25,12 @@ public class MainMenuScreen implements Screen {
         ScreenUtils.clear(0,0,0.8f,1);
 
         camera.update();
-        game.batch.setProjectionMatrix(camera.combined);
+        game.getBatch().setProjectionMatrix(camera.combined);
 
-        game.batch.begin();
-        game.font.draw(game.batch, "Welcome to my Flappy Bird clone!!!", 300, 600);
-        game.font.draw(game.batch, "Tap anywhere to begin", 300, 500);
-        game.batch.end();
+        game.getBatch().begin();
+        game.getFont().draw(game.getBatch(), "Welcome to my Flappy Bird clone!!!", 300, 600);
+        game.getFont().draw(game.getBatch(), "Tap anywhere to begin", 300, 500);
+        game.getBatch().end();
 
         if (Gdx.input.isTouched()) {
             game.setScreen(new GameScreen(game));

@@ -90,19 +90,19 @@ public class GameScreen implements Screen {
         ScreenUtils.clear(0,0,0.8f,1);
 
         //tell the SpriteBatch to render in the coordinate system specified by the camera
-        game.batch.setProjectionMatrix(camera.combined);
+        game.getBatch().setProjectionMatrix(camera.combined);
 
         //begin a new batch and draw the player and obstacles
-        game.batch.begin();
-        game.batch.draw(playerImage, player.x, player.y, player.width, player.height);
+        game.getBatch().begin();
+        game.getBatch().draw(playerImage, player.x, player.y, player.width, player.height);
         for (Rectangle obstacle : bottomObstacles) {
-            game.batch.draw(bottomObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
+            game.getBatch().draw(bottomObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
         }
         for (Rectangle obstacle : topObstacles) {
-            game.batch.draw(topObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
+            game.getBatch().draw(topObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
         }
-        game.font.draw(game.batch, Integer.toString(points), 100, 700);
-        game.batch.end();
+        game.getFont().draw(game.getBatch(), Integer.toString(points), 100, 700);
+        game.getBatch().end();
 
         //process user input
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {

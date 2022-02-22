@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
 public class FlappyBirdGame extends Game {
-	SpriteBatch batch;
-	BitmapFont font;
+	private SpriteBatch batch;
+	private BitmapFont font;
 
 	Array<Integer> scoreboard;
 
@@ -17,6 +17,14 @@ public class FlappyBirdGame extends Game {
 		font = new BitmapFont();
 		scoreboard = new Array<>();
 		this.setScreen(new MainMenuScreen(this));
+	}
+
+	public SpriteBatch getBatch() {
+		return this.batch;
+	}
+
+	public BitmapFont getFont() {
+		return this.font;
 	}
 
 	@Override

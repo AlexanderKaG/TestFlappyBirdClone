@@ -32,23 +32,23 @@ public class EndScreen implements Screen {
         ScreenUtils.clear(0,0,0.8f,1);
 
         camera.update();
-        game.batch.setProjectionMatrix(camera.combined);
+        game.getBatch().setProjectionMatrix(camera.combined);
 
         int scoreboardLayout = 650;
         int highScore = 0;
-        game.batch.begin();
-        game.font.draw(game.batch, "Your Score: " + GameScreen.points, 340, 700);
-        game.font.draw(game.batch, "Previous scores:", 340, scoreboardLayout);
+        game.getBatch().begin();
+        game.getFont().draw(game.getBatch(), "Your Score: " + GameScreen.points, 340, 700);
+        game.getFont().draw(game.getBatch(), "Previous scores:", 340, scoreboardLayout);
         for (Integer score : game.scoreboard) {
-            game.font.draw(game.batch, Integer.toString(score), 340, scoreboardLayout - 20);
+            game.getFont().draw(game.getBatch(), Integer.toString(score), 340, scoreboardLayout - 20);
             scoreboardLayout -= 20;
             if (score > highScore) {
                 highScore = score;
             }
         }
-        game.font.draw(game.batch, "High-score: " + highScore, 340, 200);
-        game.font.draw(game.batch, "Tap anywhere to restart", 340, 100);
-        game.batch.end();
+        game.getFont().draw(game.getBatch(), "High-score: " + highScore, 340, 200);
+        game.getFont().draw(game.getBatch(), "Tap anywhere to restart", 340, 100);
+        game.getBatch().end();
 
         if (Gdx.input.isTouched()) {
             GameScreen.points = 0;
