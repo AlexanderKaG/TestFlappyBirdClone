@@ -17,7 +17,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void show() {
-
+// method required to implement Screen
     }
 
     @Override
@@ -40,26 +40,26 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+// method required to implement Screen
     }
 
     @Override
     public void pause() {
-
+// method required to implement Screen
     }
 
     @Override
     public void resume() {
-
+// method required to implement Screen
     }
 
     @Override
     public void hide() {
-
+// method required to implement Screen
     }
 
     @Override
     public void dispose() {
-
+// method required to implement Screen
     }
 }
