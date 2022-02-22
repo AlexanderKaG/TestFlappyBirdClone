@@ -22,7 +22,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(0,0,0.8f,1);
+        ScreenUtils.clear(0, 0, 0.8f, 1);
 
         camera.update();
         game.getBatch().setProjectionMatrix(camera.combined);

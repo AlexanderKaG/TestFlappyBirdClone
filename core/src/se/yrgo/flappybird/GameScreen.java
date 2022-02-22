@@ -44,12 +44,12 @@ public class GameScreen implements Screen {
 
         //create a Rectangle to logically represent the player
         player = new Rectangle();
-        player.x = (float)800/2-(float)64/2;
+        player.x = (float) 800 / 2 - (float) 64 / 2;
         player.y = 400;
         player.width = 64;
         player.height = 64;
 
-       //creates two arrays to hold bottomObstacles and topObstacles and spawns the first obstacle
+        //creates two arrays to hold bottomObstacles and topObstacles and spawns the first obstacle
         bottomObstacles = new Array<>();
         topObstacles = new Array<>();
         spawnObstacles();
@@ -66,8 +66,8 @@ public class GameScreen implements Screen {
         Rectangle topObstacle = new Rectangle();
         topObstacle.x = 850;
         topObstacle.width = 128;
-        topObstacle.height = 600-bottomObstacle.height;
-        topObstacle.y = 800-topObstacle.height;
+        topObstacle.height = 600 - bottomObstacle.height;
+        topObstacle.y = 800 - topObstacle.height;
         topObstacles.add(topObstacle);
 
         lastObstacleSpawnTime = TimeUtils.nanoTime();
@@ -87,7 +87,7 @@ public class GameScreen implements Screen {
     public void render(float delta) {
 
         //background color
-        ScreenUtils.clear(0,0,0.8f,1);
+        ScreenUtils.clear(0, 0, 0.8f, 1);
 
         //tell the SpriteBatch to render in the coordinate system specified by the camera
         game.getBatch().setProjectionMatrix(camera.combined);
@@ -96,10 +96,10 @@ public class GameScreen implements Screen {
         game.getBatch().begin();
         game.getBatch().draw(playerImage, player.x, player.y, player.width, player.height);
         for (Rectangle obstacle : bottomObstacles) {
-            game.getBatch().draw(bottomObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
+            game.getBatch().draw(bottomObstacleImage, obstacle.x, obstacle.y, obstacle.width, obstacle.height);
         }
         for (Rectangle obstacle : topObstacles) {
-            game.getBatch().draw(topObstacleImage, obstacle.x, obstacle. y, obstacle.width, obstacle.height);
+            game.getBatch().draw(topObstacleImage, obstacle.x, obstacle.y, obstacle.width, obstacle.height);
         }
         game.getFont().draw(game.getBatch(), Integer.toString(points), 100, 700);
         game.getBatch().end();
@@ -110,8 +110,8 @@ public class GameScreen implements Screen {
         }
 
         //make sure the player stays within the screen boundaries
-        if (player.y > 800-64) {
-            player.y = 800-64;
+        if (player.y > 800 - 64) {
+            player.y = 800 - 64;
         }
         if (player.y < 0) {
             player.y = 0;
