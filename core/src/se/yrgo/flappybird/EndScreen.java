@@ -1,6 +1,7 @@
 package se.yrgo.flappybird;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -24,7 +25,7 @@ public class EndScreen implements Screen {
 
     @Override
     public void show() {
-// method required to implement Screen
+        // method required to implement Screen
     }
 
     @Override
@@ -50,7 +51,7 @@ public class EndScreen implements Screen {
         game.getFont().draw(game.getBatch(), "Tap anywhere to restart", 340, 100);
         game.getBatch().end();
 
-        if (Gdx.input.isTouched()) {
+        if (Gdx.input.isTouched() || Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
             GameScreen.points = 0;
             game.setScreen(new GameScreen(game));
             dispose();
@@ -59,26 +60,26 @@ public class EndScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-// method required to implement Screen
+        // method required to implement Screen
     }
 
     @Override
     public void pause() {
-// method required to implement Screen
+        // method required to implement Screen
     }
 
     @Override
     public void resume() {
-// method required to implement Screen
+        // method required to implement Screen
     }
 
     @Override
     public void hide() {
-// method required to implement Screen
+        // method required to implement Screen
     }
 
     @Override
     public void dispose() {
-// method required to implement Screen
+        // method required to implement Screen
     }
 }
