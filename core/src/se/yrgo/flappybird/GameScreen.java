@@ -36,7 +36,7 @@ public class GameScreen implements Screen {
 
     private long lastObstacleSpawnTime;
     private long lastPointAwardedTime;
-    static int points = 0;
+    private static int points = 0;
 
     public GameScreen(final FlappyBirdGame game) {
         this.game = game;
@@ -79,6 +79,13 @@ public class GameScreen implements Screen {
         topObstacles.add(topObstacle);
 
         lastObstacleSpawnTime = TimeUtils.nanoTime();
+    }
+
+    public static int getPoints() {
+        return points;
+    }
+    public static void setPoints(int points) {
+        GameScreen.points = points;
     }
 
     private void addPoints() {
